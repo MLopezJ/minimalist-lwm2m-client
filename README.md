@@ -22,28 +22,6 @@ a minimal LwM2M client which performe the following operations:
 npm install
 ```
 
-## Enviroment variables
-
-Create a `.env` file in the root of the proyect with the following keys
-
-```
-deviceName=
-port=
-host=
-lifetime=
-lwm2mV=
-biding=
-```
-
-Where 
-
-* `deviceName` should be the name of the device
-* `port` should be the port of the LwM2M server. `5683`, for example.
-* `host` should be the hostname. `eu.iot.avsystem.cloud`, for example.
-* `lifetime` should be the lifetime desire for the connection between the client and the server. It should be in seconds, `3600` for example.
-* `lwm2mV` should be the LwM2M version used by the client. `1.1`, for example.
-* `biding` should be the type of binding that the client supports for communication with the server. `U` for example, which stands for UDP.
-
 ## Test
 
 ```
