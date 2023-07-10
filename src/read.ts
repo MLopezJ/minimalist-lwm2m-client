@@ -9,7 +9,7 @@ import { typeOfElement, type elementType } from './utils/typeOfElement'
 /**
  * Performe Read operation from Dev Mang & Serv Enab interface
  */
-const read = (port: number) => {
+export const read = (port: number) => {
 	return new Promise<void>((resolve, reject) => {
 		const udpDefault = 'udp4'
 		const socket = coap.createServer({
