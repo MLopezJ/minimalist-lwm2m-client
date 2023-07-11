@@ -32,8 +32,7 @@ npm test
 ## Execution
 
 ```
-// npx tsx src/index.ts
-// TODO
+npx tsx src/index.ts
 ```
 
 ## Usage
