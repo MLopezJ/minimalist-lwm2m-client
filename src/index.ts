@@ -13,7 +13,7 @@ const main = async () => {
 
     const register = await registration(device)
 
-    const readObjects = await read(register.socketPort)
+    await read(register.socketPort)
 
 }
 
