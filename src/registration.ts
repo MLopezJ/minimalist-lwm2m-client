@@ -45,12 +45,12 @@ export const registration = async (
 	const SenMLCbor = '112'
 
 	/**
-	 * JSON
+	 * LwM2M JSON
 	 * @see https://www.openmobilealliance.org/release/LightweightM2M/V1_1_1-20190617-A/OMA-TS-LightweightM2M_Core-V1_1_1-20190617-A.pdf pag 71
 	 */
-	const json = '11543'
+	const lwM2MJson = '11543'
 
-	const dataFormatId = `${json},${SenMLJson},${SenMLCbor}`
+	const dataFormatId = `${lwM2MJson},${SenMLJson},${SenMLCbor}`
 	const payload = `</>;ct=${dataFormatId};hb,${objects}`
 
 	const agent = new coap.Agent({ type: 'udp4' })
