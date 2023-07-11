@@ -18,7 +18,12 @@ const main = async () => {
     await read(register.socketPort)
 
     setTimeout(async() => {
-        await send('test name', true)
+        const sendParams = {
+            newManufacturer: 'test name',
+            cbor: true,
+            test: false
+        }
+        await send(sendParams)
     }, 10 * 1000)
 
 }
