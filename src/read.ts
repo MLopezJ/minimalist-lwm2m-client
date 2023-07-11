@@ -1,6 +1,6 @@
 import { getURN } from '@nordicsemiconductor/lwm2m-types'
 import coap from 'coap'
-import { device, deviceObjects } from './deviceV2'
+import { device, deviceObjects } from './deviceObjects'
 import { createResourceArray } from './utils/createResourceArray'
 import { element, getElementPath } from './utils/getElementPath'
 import { requestParser } from './utils/requestParser'
