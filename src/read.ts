@@ -10,6 +10,7 @@ import { typeOfElement, type elementType } from './utils/typeOfElement'
  * Performe Read operation from Dev Mang & Serv Enab interface
  */
 export const read = (port: number) => {
+	console.log('\nRead operation from Dev Mang & Serv Enab interface: start')
 	return new Promise<void>((resolve, reject) => {
 		const udpDefault = 'udp4'
 		const socket = coap.createServer({
@@ -19,7 +20,7 @@ export const read = (port: number) => {
 
 		socket.listen(port, (err: unknown) => {
 			console.log(
-				`Socket connection stablished. Listening from port number: ${port}`,
+				`\nSocket connection stablished. Listening from port number: ${port}`,
 			)
 			if (err !== undefined) reject(err)
 		})

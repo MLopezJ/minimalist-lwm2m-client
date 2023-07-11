@@ -14,6 +14,7 @@ type registrationParams = {
 export const registration = async (
 	_: registrationParams,
 ): Promise<{ socketPort: number }> => {
+	console.log('\nClient Registration operation from Register interface: start')
 	const host = 'eu.iot.avsystem.cloud'
 	const query = `ep=${_.deviceName}&lt=${_.lifetime}&lwm2m=${_.lwm2mv}&b=${_.biding}`
 
@@ -73,6 +74,7 @@ export const registration = async (
 
 	const socketPort = response.outSocket?.port
 
+	console.log('\nClient Registration operation from Register interface: end')
 	if (socketPort === undefined) {
 		throw new Error(`Socket connection is not stablish`)
 	}
