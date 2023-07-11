@@ -7,20 +7,24 @@ import { type CoapMethod } from 'coap-packet'
  * To keep the scope of the implementation small, this method is only able
  * to update the value of the resource 0 (Manufacturer) of object 3 (Device)
  */
-export const send = async (newManufacturer: string) => {
+export const send = async (newManufacturer: string, cbor: boolean = false) => {
 	console.log('\nSend operation from Information Reporting interface: start')
-	const payload = [{ n: '/3/0/0', ['vs']: newManufacturer }]
+	console.log(`\nFormat: ${cbor === true ? 'cbor': 'json'}`)
+	const jsonValue = JSON.stringify([{ n: '/3/0/0', ['vs']: newManufacturer }])
+	const cborValue = `[{-2:"/3/0/",0:"0",3:"${newManufacturer}"}]`
+	const payload = cbor === true ? cborValue : jsonValue
 	const params = {
 		host: 'eu.iot.avsystem.cloud',
 		port: 5683,
 		pathname: '/dp',
 		method: 'POST' as CoapMethod,
 		options: {
-			'Content-Format': 'application/senml+json',
+			'Content-Format': cbor === true ? 'application/senml+cbor' :'application/senml+json',
 		},
 	}
 	const agent = new coap.Agent({ type: 'udp4' })
-	const request = agent.request(params).end(Buffer.from(JSON.stringify(payload)))
+	console.log(Buffer.from(payload))
+	const request = agent.request(params).end(Buffer.from(payload))
 
 	const serverResponse = new Promise<coap.IncomingMessage>(
 		(resolve, reject) => {
