@@ -1,6 +1,6 @@
 import { getURN } from '@nordicsemiconductor/lwm2m-types'
 import coap from 'coap'
-import { assetTracker, assetTrackerFirmwareV2 } from './assetTrackerV2'
+import { device, deviceObjects } from './deviceV2'
 import { createResourceArray } from './utils/createResourceArray'
 import { element, getElementPath } from './utils/getElementPath'
 import { requestParser } from './utils/requestParser'
@@ -34,7 +34,7 @@ export const read = (port: number) => {
 			let result: Buffer = Buffer.from('')
 
 			if (action === 'read') {
-				result = await readObjectValue(url, assetTrackerFirmwareV2)
+				result = await readObjectValue(url, deviceObjects)
 			}
 
 			/**
@@ -62,7 +62,7 @@ export const readObjectValue = async (
 	let urn = await getURN(`${elementPath.objectId}`)
 
 	if (urn === undefined) {
-		if (isObjectInAssetTracker(`${elementPath.objectId}`) === false)
+		if (isObjectIndevice(`${elementPath.objectId}`) === false)
 			return Buffer.from(JSON.stringify({ bn: null, e: null }))
 
 		// * if urn is not found in LwM2M-types lib but object id is part of Asset Tracker, it means the object is a custom object of Asset Tracker v2
@@ -75,7 +75,7 @@ export const readObjectValue = async (
 	const data = createLwm2mJsonFormat(
 		url,
 		Math.floor(Date.now() / 1000),
-		object as Partial<assetTracker>,
+		object as Partial<device>,
 		elementType,
 		elementPath,
 	)
@@ -86,8 +86,8 @@ export const readObjectValue = async (
 /**
  * Given the URN of the object check if it is part of the Asset Tracker v2
  */
-export const isObjectInAssetTracker = (objectId: string): boolean =>
-	Object.keys(assetTrackerFirmwareV2).includes(objectId)
+export const isObjectIndevice = (objectId: string): boolean =>
+	Object.keys(deviceObjects).includes(objectId)
 
 /**
  * Create the application/vnd.oma.lwm2m+json content format
@@ -96,7 +96,7 @@ export const isObjectInAssetTracker = (objectId: string): boolean =>
 export const createLwm2mJsonFormat = (
 	url: string,
 	time: number,
-	object: undefined | Partial<assetTracker>,
+	object: undefined | Partial<device>,
 	elementType: elementType | undefined,
 	elementPath: element,
 ): any => {
