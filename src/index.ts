@@ -17,7 +17,6 @@ const main = async () => {
     await read(register.socketPort)
 
     setTimeout(async() => {
-        console.log('\nexecuting send operation')
         await send('test name')
     }, 10 * 1000)
 
