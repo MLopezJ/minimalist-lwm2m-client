@@ -31,7 +31,7 @@ export const registration = async (
 
 	// bracket format
 	const objects =
-		'<6/0>, <10256/0>, <50009/0>, <1/0>, <3/0>, <4/0>, <5/0>, <3303/0>, <3304/0>, <3323/0>, <3347/0>'
+		'<1/0>, <3/0>'
 
 	/**
 	 * SenML JSON
