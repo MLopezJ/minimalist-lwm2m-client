@@ -12,8 +12,8 @@
 a minimal LwM2M client which performe the following operations:
 
 * `Client registration` from `Register` interface
-* `Discover` from `Dev Mang & Serv Enab` interface (triggered by the server)
-* `Read` from `Dev Mang & Serv Enab` interface (triggered by the server)
+* `Discover` from `Dev Mang & Serv Enab` interface
+* `Read` from `Dev Mang & Serv Enab` interface
 * `Send` from `Information Reporting` interface (triggered by the client)
 
 ## Installation
@@ -54,9 +54,31 @@ This action is executed by the LwM2M client, in this case this device.
   * 110 is the id of SenML JSON
   * 112 is the id of SenML CBOR
   * 11543 is the id of LwM2M JSON
-  * 
 
 If request is successful, it returns a port number.
+
+### Discover from Dev Mang & Serv Enab interface
+This action is triggered by the server, in this case Coiote, and the client should listen from the port returned in the Client Registration operation from Register interface in order to receive the request.
+
+### Discover from Dev Mang & Serv Enab interface
+This action is triggered by the server, in this case Coiote, and the client should listen from the port returned in the Client Registration operation from Register interface in order to receive the request.
+
+#### Details 
+* port: the one returned in Client Registration operation from Register interface
+* content-format: 'application/vnd.oma.lwm2m+json'
+* payload:
+  ``` JavaScript
+  {
+  bn: '/3/0/',
+  e: [
+   { n: '0/0', sv: 'Nordic' },
+   { n: '0/1', sv: '00010' },
+   { n: '0/2', sv: '00000',},
+   // ....
+   ]
+  }
+  ```
+
 
 ## Usage
 TODO
