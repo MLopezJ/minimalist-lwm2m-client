@@ -80,7 +80,7 @@ This action is triggered by the server, in this case Coiote, and the client shou
   }
   ```
 
-### Client Registration from Register interface
+### Send from Information Reporting interface
 This action is executed by the LwM2M client, in this case this device. 
 
 #### Details 
