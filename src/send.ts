@@ -52,7 +52,8 @@ export const send = async (newManufacturer: string, cbor: boolean = false) => {
  * Set senml+cbor format
  */
 const getCborValue = (newManufacturer: string): Buffer => {
+	// [{ 'n': '/3/0/0', 'vs': newManufacturer }]
 	const map = new Map().set(0, '/3/0/0').set(3, newManufacturer)
-	const cborValue = cbor.encode(map)
+	const cborValue = cbor.encode([map])
 	return cborValue
 }
