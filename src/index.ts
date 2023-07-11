@@ -9,7 +9,8 @@ const main = async () => {
         deviceName: "urn:imei:000000000000005",
         lifetime: "3600",
         lwm2mv: "1.1",
-        biding: 'U'
+        biding: 'U',
+        test: false
     }
 
     const register = await registration(device)
