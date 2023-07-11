@@ -10,16 +10,13 @@ import { type CoapMethod } from 'coap-packet'
 export const send = async (newManufacturer: string) => {
 	console.log('\nSend operation from Information Reporting interface: start')
 	const payload = [{ n: '/3/0/0', ['vs']: newManufacturer }]
-
-	const SenMLJson = 'application/senml+json'
-	const host = 'eu.iot.avsystem.cloud'
 	const params = {
-		host: host,
+		host: 'eu.iot.avsystem.cloud',
 		port: 5683,
 		pathname: '/dp',
 		method: 'POST' as CoapMethod,
 		options: {
-			'Content-Format': SenMLJson,
+			'Content-Format': 'application/senml+json',
 		},
 	}
 	const agent = new coap.Agent({ type: 'udp4' })
