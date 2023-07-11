@@ -30,8 +30,7 @@ export const registration = async (
 	}
 
 	// bracket format
-	const objects =
-		'<1/0>, <3/0>'
+	const objects = '<1/0>, <3/0>'
 
 	/**
 	 * SenML JSON
