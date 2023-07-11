@@ -14,7 +14,7 @@ a minimal LwM2M client which performe the following operations:
 * `Client registration` from `Register` interface
 * `Discover` from `Dev Mang & Serv Enab` interface
 * `Read` from `Dev Mang & Serv Enab` interface
-* `Send` from `Information Reporting` interface (triggered by the client)
+* `Send` from `Information Reporting` interface
 
 ## Installation
 
@@ -44,6 +44,7 @@ This action is executed by the LwM2M client, in this case this device.
 * host: 'eu.iot.avsystem.cloud'
 * port: 5683
 * method: POST
+* pathname: '/rd'
 * query: 'ep=xxxx&lt=xxxx&lwm2m=xxxx&b=xxxx', where:
   * `ep` is the name of the device
   * `lt` is the lifetime of the opening conenction
@@ -79,6 +80,28 @@ This action is triggered by the server, in this case Coiote, and the client shou
   }
   ```
 
+### Client Registration from Register interface
+This action is executed by the LwM2M client, in this case this device. 
+
+#### Details 
+* host: 'eu.iot.avsystem.cloud'
+* port: 5683
+* method: POST
+* pathname: '/dp'
+* content-format: 'application/senml+cbor' & 'application/senml+json'
+* payload:
+``` JavaScript
+  // for application/senml+cbor'
+  00 00 000 00 00 000 
+```
+
+or
+
+``` JavaScript
+  // for application/senml+json
+  [{ 'n': '/3/0/0', 'vs': newManufacturer }]
+```
+
 
 ## Usage
-TODO
+After the execution commad is triggered, the device send a register operation to the LwM2M server and wait for the response. If the server accept the registratrion request, the client open a socket connection to hear about Discover and Read operation. After that, the device wait 10 seconds and onces the tiem is expired, the device trigger a send operation to update the value of resource `/3/0/0`.
