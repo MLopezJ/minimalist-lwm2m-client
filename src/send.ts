@@ -20,7 +20,7 @@ export const send = async (newManufacturer: string) => {
 		},
 	}
 	const agent = new coap.Agent({ type: 'udp4' })
-	const request = agent.request(params).end(JSON.stringify(payload))
+	const request = agent.request(params).end(Buffer.from(JSON.stringify(payload)))
 
 	const serverResponse = new Promise<coap.IncomingMessage>(
 		(resolve, reject) => {
