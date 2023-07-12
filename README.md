@@ -28,14 +28,20 @@ npm install
 npm test
 ```
 
-
 ## Execution
 
 ```
 npx tsx src/index.ts
 ```
 
+## Usage
+1. Create a device in coiote using No-Sec security mode
+2. Update value of `deviceName` with the name of the device just created in Coiote. [deviceName](https://github.com/MLopezJ/minimalist-lwm2m-client/blob/saga/src/index.ts#L9)
+3. Runs execution command
+
 ## Description
+
+After the execution is initialized, the device send a register operation to the LwM2M server and wait for the response. If the server accept the registratrion request, the client open a socket connection to hear about Discover and Read operation. After that, the device wait 10 seconds and onces the time is expired, the device trigger a send operation to update the value of resource `/3/0/0`.
 
 ### Client Registration from Register interface
 This action is executed by the LwM2M client, in this case this device. 
@@ -106,5 +112,3 @@ or
 * Code: [send.ts](src/send.ts)
 * Documentation: [Information Reporting Interface](https://www.openmobilealliance.org/release/LightweightM2M/V1_2-20201110-A/HTML-Version/OMA-TS-LightweightM2M_Transport-V1_2-20201110-A.html#6-4-5-0-645-Information-Reporting-Interface:~:text=Asynchronous%20Response-,Send,-POST%0AContent%20Format) , [Send Operation, pag 61](https://www.openmobilealliance.org/release/LightweightM2M/V1_1_1-20190617-A/OMA-TS-LightweightM2M_Core-V1_1_1-20190617-A.pdf)
 
-## Usage
-After the execution is initialized, the device send a register operation to the LwM2M server and wait for the response. If the server accept the registratrion request, the client open a socket connection to hear about Discover and Read operation. After that, the device wait 10 seconds and onces the time is expired, the device trigger a send operation to update the value of resource `/3/0/0`.
