@@ -65,9 +65,9 @@ This action is triggered by the server, in this case Coiote, and the client shou
 This action is triggered by the server, in this case Coiote, and the client should listen from the port returned in the Client Registration operation from Register interface in order to receive the request.
 
 #### Details 
-* port: the one returned in Client Registration operation from Register interface
-* content-format: 'application/vnd.oma.lwm2m+json'
-* payload:
+* **port**: the one returned in Client Registration operation from Register interface
+* **content-format**: 'application/vnd.oma.lwm2m+json'
+* **payload**:
   ``` JavaScript
   {
   bn: '/3/0/',
