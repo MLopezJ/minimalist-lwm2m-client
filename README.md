@@ -59,10 +59,10 @@ This action is executed by the LwM2M client, in this case this device.
 If request is successful, it returns a port number.
 
 ### Discover from Dev Mang & Serv Enab interface
-This action is triggered by the server, in this case Coiote, and the client should listen from the port returned in the Client Registration operation from Register interface in order to receive the request.
+This action is triggered by the server, in this case Coiote, and the client should listen from the port returned in the Client Registration operation in order to receive the request.
 
 ### Discover from Dev Mang & Serv Enab interface
-This action is triggered by the server, in this case Coiote, and the client should listen from the port returned in the Client Registration operation from Register interface in order to receive the request.
+This action is triggered by the server, in this case Coiote, and the client should listen from the port returned in the Client Registration operation in order to receive the request.
 
 #### Details 
 * **port**: the one returned in Client Registration operation from Register interface
@@ -104,7 +104,7 @@ or
 
 #### Links
 * Code: [send.ts](src/send.ts)
-* Documentation: [Information Reporting Interface](https://www.openmobilealliance.org/release/LightweightM2M/V1_2-20201110-A/HTML-Version/OMA-TS-LightweightM2M_Transport-V1_2-20201110-A.html#6-4-5-0-645-Information-Reporting-Interface:~:text=Asynchronous%20Response-,Send,-POST%0AContent%20Format) [Send Operation, pag 61](https://www.openmobilealliance.org/release/LightweightM2M/V1_1_1-20190617-A/OMA-TS-LightweightM2M_Core-V1_1_1-20190617-A.pdf)
+* Documentation: [Information Reporting Interface](https://www.openmobilealliance.org/release/LightweightM2M/V1_2-20201110-A/HTML-Version/OMA-TS-LightweightM2M_Transport-V1_2-20201110-A.html#6-4-5-0-645-Information-Reporting-Interface:~:text=Asynchronous%20Response-,Send,-POST%0AContent%20Format) , [Send Operation, pag 61](https://www.openmobilealliance.org/release/LightweightM2M/V1_1_1-20190617-A/OMA-TS-LightweightM2M_Core-V1_1_1-20190617-A.pdf)
 
 ## Usage
-After the execution commad is triggered, the device send a register operation to the LwM2M server and wait for the response. If the server accept the registratrion request, the client open a socket connection to hear about Discover and Read operation. After that, the device wait 10 seconds and onces the time is expired, the device trigger a send operation to update the value of resource `/3/0/0`.
+After the execution is initialized, the device send a register operation to the LwM2M server and wait for the response. If the server accept the registratrion request, the client open a socket connection to hear about Discover and Read operation. After that, the device wait 10 seconds and onces the time is expired, the device trigger a send operation to update the value of resource `/3/0/0`.
