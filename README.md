@@ -41,20 +41,20 @@ npx tsx src/index.ts
 This action is executed by the LwM2M client, in this case this device. 
 
 #### Details 
-* host: 'eu.iot.avsystem.cloud'
-* port: 5683
-* method: POST
-* pathname: '/rd'
-* query: 'ep=xxxx&lt=xxxx&lwm2m=xxxx&b=xxxx', where:
+* **host**: `eu.iot.avsystem.cloud`
+* **port**: `5683`
+* **method**: `POST`
+* **pathname**: `/rd`
+* **query**: `ep=xxxx&lt=xxxx&lwm2m=xxxx&b=xxxx`, where:
   * `ep` is the name of the device
   * `lt` is the lifetime of the opening conenction
   * `lwm2m` is the version of the protocol suported by the device
   * `b` stands for biding mode
-* payload: '</>;ct=110,112,11543;hb,<1/0>, <3/0>' , where:
+* **payload**: `</>;ct=110,112,11543;hb,<1/0>, <3/0>` , where:
   * `ct` stands for content type
-  * 110 is the id of SenML JSON
-  * 112 is the id of SenML CBOR
-  * 11543 is the id of LwM2M JSON
+  * `110` is the id of SenML JSON
+  * `112` is the id of SenML CBOR
+  * `11543` is the id of LwM2M JSON
 
 If request is successful, it returns a port number.
 
@@ -84,12 +84,12 @@ This action is triggered by the server, in this case Coiote, and the client shou
 This action is executed by the LwM2M client, in this case this device. 
 
 #### Details 
-* host: 'eu.iot.avsystem.cloud'
-* port: 5683
-* method: POST
-* pathname: '/dp'
-* content-format: 'application/senml+cbor' & 'application/senml+json'
-* payload:
+* **host**: `eu.iot.avsystem.cloud`
+* **port**: `5683`
+* **method**: `POST`
+* **pathname**: `/dp`
+* **content-format**: `application/senml+cbor` & `application/senml+json`
+* **payload**:
 ``` JavaScript
   // for application/senml+cbor'
   00 00 000 00 00 000 
