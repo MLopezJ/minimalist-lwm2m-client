@@ -69,13 +69,13 @@ export const readObjectValue = async (
 		urn = `${elementPath.objectId}`
 	}
 
-	const object = objectList[`${urn}`]
+	const object = objectList[`${urn as keyof typeof objectList}`] as Partial<device> 
 	const elementType = typeOfElement(url)
 
 	const data = createLwm2mJsonFormat(
 		url,
 		Math.floor(Date.now() / 1000),
-		object as Partial<device>,
+		object,
 		elementType,
 		elementPath,
 	)
