@@ -37,7 +37,7 @@ npx tsx src/index.ts
 1. Create a device in coiote using No-Sec security mode
 2. Update value of `deviceName` with the name of the device just created in
    Coiote.
-   [deviceName](https://github.com/MLopezJ/minimalist-lwm2m-client/blob/saga/src/index.ts#L9)
+   [deviceName](https://github.com/MLopezJ/minimalist-lwm2m-client/blob/saga/src/index.ts#L7)
 3. Runs execution command
 
 ## Description
