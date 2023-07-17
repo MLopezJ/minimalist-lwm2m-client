@@ -98,7 +98,8 @@ This action is executed by the LwM2M client, in this case this device.
 * **payload**:
 ``` JavaScript
   // for application/senml+cbor'
-  00 00 000 00 00 000 
+  00 00 000 00 00 000
+  // TODO: uses real cbor value
 ```
 
 or
