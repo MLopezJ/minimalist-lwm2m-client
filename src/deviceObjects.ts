@@ -81,7 +81,6 @@ const device: Device_3 = {
 	'19': '0.0', // software version
 }
 
-
 export const lwm2mObjects: LwM2MDocument = {
 	[LwM2MServer_1_urn]: server,
 	[Device_3_urn]: device,

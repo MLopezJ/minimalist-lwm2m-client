@@ -2,7 +2,7 @@ import cbor from 'cbor'
 import coap from 'coap'
 import { type CoapMethod } from 'coap-packet'
 
-export type sendParams  = {
+export type sendParams = {
 	newManufacturer: string
 	cbor: boolean
 	test: boolean
@@ -14,11 +14,12 @@ export type sendParams  = {
  * To keep the scope of the implementation small, this method is only able
  * to update the value of the resource 0 (Manufacturer) of object 3 (Device)
  */
-export const send = async (_: sendParams): Promise<void> => { // TODO: change any
+export const send = async (_: sendParams): Promise<void> => {
+	// TODO: change any
 	console.log('\nSend operation from Information Reporting interface: start')
 	console.log(`\nFormat: ${_.cbor === true ? 'cbor' : 'json'}`)
 	const jsonValue = Buffer.from(
-		JSON.stringify([{ 'n': '/3/0/0', 'vs': _.newManufacturer }]),
+		JSON.stringify([{ n: '/3/0/0', vs: _.newManufacturer }]),
 	)
 	const payload = _.cbor === true ? getCborValue(_.newManufacturer) : jsonValue
 	const host = _.test === false ? 'eu.iot.avsystem.cloud' : 'localhost'
@@ -37,7 +38,10 @@ export const send = async (_: sendParams): Promise<void> => { // TODO: change an
 
 	const serverResponse = new Promise<coap.IncomingMessage>(
 		(resolve, reject) => {
-			const t = setTimeout(() => reject(new Error('timeout in send operation')), 10 * 1000)
+			const t = setTimeout(
+				() => reject(new Error('timeout in send operation')),
+				10 * 1000,
+			)
 			request.on('response', (response) => {
 				clearTimeout(t)
 				if (response.code === '2.01' || response.code === '2.05') {
