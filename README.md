@@ -116,8 +116,8 @@ This action is executed by the LwM2M client, in this case this device.
 
 ```JavaScript
   // for application/senml+cbor'
-  00 00 000 00 00 000
-  // TODO: uses real cbor value
+  81 a2 00 66 2f 33 2f 30 2f 30 03 6f 6e 65 77 4d 61 6e 75 66 61 63 74 75 72 65 72
+  // { 0: '/3/0/0', 3: 'newManufacturer' }
 ```
 
 or
