@@ -2,27 +2,28 @@ import cbor from 'cbor'
 import coap from 'coap'
 import { type CoapMethod } from 'coap-packet'
 
-export type sendParams = {
-	newManufacturer: string
-	cbor: boolean
-	test: boolean
-}
-
 /**
  * Performe Send operation from Information Reporting interface.
  *
  * To keep the scope of the implementation small, this method is only able
  * to update the value of the resource 0 (Manufacturer) of object 3 (Device)
  */
-export const send = async (_: sendParams): Promise<void> => {
-	// TODO: change any
+export const send = async ({
+	newManufacturer,
+	cbor,
+	test,
+}: {
+	newManufacturer: string
+	cbor: boolean
+	test: boolean
+}): Promise<void> => {
 	console.log('\nSend operation from Information Reporting interface: start')
-	console.log(`\nFormat: ${_.cbor === true ? 'cbor' : 'json'}`)
+	console.log(`\nFormat: ${cbor === true ? 'cbor' : 'json'}`)
 	const jsonValue = Buffer.from(
-		JSON.stringify([{ n: '/3/0/0', vs: _.newManufacturer }]),
+		JSON.stringify([{ n: '/3/0/0', vs: newManufacturer }]),
 	)
-	const payload = _.cbor === true ? getCborValue(_.newManufacturer) : jsonValue
-	const host = _.test === false ? 'eu.iot.avsystem.cloud' : 'localhost'
+	const payload = cbor === true ? getCborValue(newManufacturer) : jsonValue
+	const host = test === false ? 'eu.iot.avsystem.cloud' : 'localhost'
 	const params = {
 		host,
 		port: 5683,
@@ -30,7 +31,7 @@ export const send = async (_: sendParams): Promise<void> => {
 		method: 'POST' as CoapMethod,
 		options: {
 			'Content-Format':
-				_.cbor === true ? 'application/senml+cbor' : 'application/senml+json',
+				cbor === true ? 'application/senml+cbor' : 'application/senml+json',
 		},
 	}
 	const agent = new coap.Agent({ type: 'udp4' })

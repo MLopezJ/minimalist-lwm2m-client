@@ -1,5 +1,5 @@
 import { Server, createServer } from 'coap'
-import { registration, type registrationParams } from './registration'
+import { registration} from './registration'
 
 describe('registerDeviceObjects', () => {
 	let server: Server
@@ -20,7 +20,7 @@ describe('registerDeviceObjects', () => {
 			})
 		})
 
-		const params: registrationParams = {
+		const params = {
 			deviceName: 'urn:imei:000000000000005',
 			lifetime: '3600',
 			lwm2mv: '1.1',

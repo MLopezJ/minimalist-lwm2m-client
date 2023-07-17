@@ -1,23 +1,25 @@
 import coap from 'coap'
 import { type CoapMethod } from 'coap-packet'
 
-export type registrationParams = {
+/**
+ * Client Registration operation from Register interface
+ */
+export const registration = async ({
+	deviceName,
+	lifetime,
+	biding,
+	lwm2mv,
+	test,
+}: {
 	deviceName: string
 	lifetime: string
 	biding: string
 	lwm2mv: string
 	test: boolean
-}
-
-/**
- * Client Registration operation from Register interface
- */
-export const registration = async (
-	_: registrationParams,
-): Promise<{ socketPort: number }> => {
+}): Promise<{ socketPort: number }> => {
 	console.log('\nClient Registration operation from Register interface: start')
-	const host = _.test === false ? 'eu.iot.avsystem.cloud' : 'localhost'
-	const query = `ep=${_.deviceName}&lt=${_.lifetime}&lwm2m=${_.lwm2mv}&b=${_.biding}`
+	const host = test === false ? 'eu.iot.avsystem.cloud' : 'localhost'
+	const query = `ep=${deviceName}&lt=${lifetime}&lwm2m=${lwm2mv}&b=${biding}`
 
 	const params = {
 		host: host,
