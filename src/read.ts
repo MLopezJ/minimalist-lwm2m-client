@@ -9,7 +9,7 @@ import { typeOfElement, type elementType } from './utils/typeOfElement'
 /**
  * Performe Read operation from Dev Mang & Serv Enab interface
  */
-export const read = (port: number) => {
+export const read = async (port: number): Promise<void> => {
 	console.log('\nRead operation from Dev Mang & Serv Enab interface: start')
 	return new Promise<void>((resolve, reject) => {
 		const udpDefault = 'udp4'

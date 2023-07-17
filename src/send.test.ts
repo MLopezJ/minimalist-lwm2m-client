@@ -1,16 +1,13 @@
 import { Server, createServer } from 'coap'
-import { deviceObjects, type device } from './deviceObjects'
 import { send } from './send'
 
 describe('update', () => {
 	let server: Server
-	let objectsList: device
 	let request: Promise<{ payload: string }>
 
 	beforeEach(async () => {
 		server = createServer()
 		server.listen(5683)
-		objectsList = deviceObjects
 		request = new Promise<{ payload: string }>((resolve) => {
 			server.on('request', (req, res) => {
 				res.end()
