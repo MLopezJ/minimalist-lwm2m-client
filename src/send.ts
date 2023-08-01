@@ -64,7 +64,21 @@ export const send = async ({
  * Set senml+cbor format
  */
 const getCborValue = (newManufacturer: string): Buffer => {
-	const map = new Map().set(0, '/3/0/0').set(3, newManufacturer)
-	const cborValue = cbor.encode([map])
+	/*
+	const map = new Map()
+		.set(-2, '/3/0') // base name
+		.set(0, '/0') // name
+		.set(-3, 1688129143.99978) // base time
+		.set(3, newManufacturer) // string value
+		*/
+	const sensor = new Map()
+		.set(-2, '/3303/0') // base name
+		.set(0, '/5700') // name
+		.set(-3, 1688129143.99978) // base time
+		.set(2, 14.0) // string value
+	const units = new Map()
+	.set(0, '/5701') // name
+	.set(3, 'Cel') // string value
+	const cborValue = cbor.encode([sensor, units])
 	return cborValue
 }

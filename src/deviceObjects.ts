@@ -1,7 +1,9 @@
-import type {
+import {
 	Device_3,
 	LwM2MDocument,
 	LwM2MServer_1,
+	Temperature_3303,
+	Temperature_3303_urn,
 } from '@nordicsemiconductor/lwm2m-types'
 
 import {
@@ -81,9 +83,25 @@ const device: Device_3 = {
 	'19': '0.0', // software version
 }
 
+/**
+ * Temperature
+ */
+const temp: Temperature_3303 = [
+	{
+		'5518': 1651820400,
+		'5601': 23.51,
+		'5602': 23.51,
+		'5603': -40,
+		'5604': 85,
+		'5700': 24.57, // Sensor Value
+		'5701': 'Celsius degrees',
+	},
+]
+
 export const lwm2mObjects: LwM2MDocument = {
 	[LwM2MServer_1_urn]: server,
 	[Device_3_urn]: device,
+	[Temperature_3303_urn]: temp
 }
 
 export type device = {
