@@ -1,4 +1,3 @@
-import cbor from 'cbor'
 import coap from 'coap'
 import { type CoapMethod } from 'coap-packet'
 
@@ -71,6 +70,8 @@ const getCborValue = (newManufacturer: string): Buffer => {
 		.set(-3, 1688129143.99978) // base time
 		.set(3, newManufacturer) // string value
 		*/
+	/*
+	
 	const sensor = new Map()
 		.set(-2, '/3303/0') // base name
 		.set(0, '/5700') // name
@@ -81,4 +82,10 @@ const getCborValue = (newManufacturer: string): Buffer => {
 	.set(3, 'Cel') // string value
 	const cborValue = cbor.encode([sensor, units])
 	return cborValue
+	*/
+
+	return Buffer.from(
+		'00155de3639b00155d81dd0108004500005d7697400040113554ac19914023cc2d7f940c163300498eff48026de57076c3ee8d9797b8b264701170ff82a421672f333330332f3000652f3537303022fb41d927b39dfffc5502fa41600000a200652f35373031036343656c',
+		'hex',
+	)
 }
