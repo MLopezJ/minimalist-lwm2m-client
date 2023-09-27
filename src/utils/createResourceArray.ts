@@ -19,7 +19,15 @@ type numericValue = {
 	v: number
 } & value
 
-export type e = stringValue | numericValue | Record<string, never>
+type BooleanValue = {
+	bv: boolean
+} & value
+
+export type e =
+	| stringValue
+	| numericValue
+	| BooleanValue
+	| Record<string, never>
 
 /**
  * Transform imput into Resource Array (variable 'e') of the application/vnd.oma.lwm2m+json format.
@@ -130,5 +138,20 @@ const createMediaType = (
 /**
  * sv = string value
  * v = float value
+ * bv = boolean value
  */
-const getDataType = (input: string) => (input === 'string' ? 'sv' : 'v')
+const getDataType = (input: string) => {
+	let valueType = ''
+	switch (input) {
+		case 'string':
+			valueType = 'sv'
+			break
+		case 'boolean':
+			valueType = 'bv'
+			break
+		case 'number':
+			valueType = 'v'
+			break
+	}
+	return valueType
+}

@@ -4,7 +4,7 @@ import { send } from './send'
 
 const main = async () => {
 	const device = {
-		deviceName: 'urn:imei:000000000000005',
+		deviceName: 'urn:imei:000000000000011',
 		lifetime: '3600',
 		lwm2mv: '1.1',
 		biding: 'U',
