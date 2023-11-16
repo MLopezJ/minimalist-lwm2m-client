@@ -2,7 +2,8 @@ import coap from 'coap'
 import { type CoapMethod } from 'coap-packet'
 
 /**
- * Client Registration operation from Register interface
+ * Operation: Client Registration
+ * Interface: Register
  */
 export const registration = async ({
 	deviceName,
