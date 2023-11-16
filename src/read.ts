@@ -37,14 +37,13 @@ export const read = async (port: number): Promise<void> => {
 			)
 
 			if (err !== undefined) reject(err)
+
+			console.log(chalk.gray('  -', `LwM2M server requests:`))
 		})
 
-		console.log(chalk.gray('  -', `LwM2M server requests:`))
 		socket.on('request', async (request, response) => {
 			const action = requestParser(request)
 			const url = request.url
-
-			console.log(chalk.gray('    -', `${action} ${url}`))
 
 			let result: Buffer = Buffer.from('')
 
@@ -59,7 +58,7 @@ export const read = async (port: number): Promise<void> => {
 			const json = 'application/vnd.oma.lwm2m+json'
 			response.setOption('Content-Format', json)
 			response.end(result)
-			console.log(chalk.gray('    -', `✔ response sent to server`))
+			console.log(chalk.gray('    -'), chalk.green('✔'), chalk.gray(`${action} ${url}`))
 			resolve()
 		})
 	})
