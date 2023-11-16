@@ -1,4 +1,5 @@
 import { getURN } from '@nordicsemiconductor/lwm2m-types'
+import chalk from 'chalk'
 import coap from 'coap'
 import { device, deviceObjects } from './deviceObjects'
 import { createResourceArray } from './utils/createResourceArray'
@@ -7,10 +8,19 @@ import { requestParser } from './utils/requestParser'
 import { typeOfElement, type elementType } from './utils/typeOfElement'
 
 /**
- * Performe Read operation from Dev Mang & Serv Enab interface
+ * Operation: Read
+ * Interface: Dev Mang & Serv Enab
  */
 export const read = async (port: number): Promise<void> => {
-	console.log('\nRead operation from Dev Mang & Serv Enab interface: start')
+	console.log('')
+	console.log(
+		chalk.blue(`Operation: `),
+		chalk.bgBlue('Read'),
+		chalk.blue('\nInterface: '),
+		chalk.bgBlue('Dev Mang & Serv Enab'),
+		chalk.green(`\nstarting...`),
+	)
+
 	return new Promise<void>((resolve, reject) => {
 		const udpDefault = 'udp4'
 		const socket = coap.createServer({
@@ -20,16 +30,21 @@ export const read = async (port: number): Promise<void> => {
 
 		socket.listen(port, (err: unknown) => {
 			console.log(
-				`\nSocket connection stablished. Listening from port number: ${port}`,
+				chalk.gray(
+					' ',
+					`Socket connection stablished: listening from port number: ${port}`,
+				),
 			)
+
 			if (err !== undefined) reject(err)
 		})
 
+		console.log(chalk.gray('  -', `LwM2M server requests:`))
 		socket.on('request', async (request, response) => {
 			const action = requestParser(request)
 			const url = request.url
 
-			console.log(`\nLwM2M server is requesting to ${action} from ${url}`)
+			console.log(chalk.gray('    -', `${action} ${url}`))
 
 			let result: Buffer = Buffer.from('')
 
@@ -44,7 +59,7 @@ export const read = async (port: number): Promise<void> => {
 			const json = 'application/vnd.oma.lwm2m+json'
 			response.setOption('Content-Format', json)
 			response.end(result)
-
+			console.log(chalk.gray('    -', `✔ response sent to server`))
 			resolve()
 		})
 	})
@@ -69,7 +84,9 @@ export const readObjectValue = async (
 		urn = `${elementPath.objectId}`
 	}
 
-	const object = objectList[`${urn as keyof typeof objectList}`] as Partial<device> 
+	const object = objectList[
+		`${urn as keyof typeof objectList}`
+	] as Partial<device>
 	const elementType = typeOfElement(url)
 
 	const data = createLwm2mJsonFormat(

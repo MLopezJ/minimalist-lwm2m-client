@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 import coap from 'coap'
 import { type CoapMethod } from 'coap-packet'
 
@@ -20,7 +21,13 @@ export const registration = async ({
 	lwm2mv: string
 	localServer: boolean
 }): Promise<{ socketPort: number }> => {
-	console.log('\nClient Registration operation from Register interface: start')
+	console.log(
+		chalk.blue(`Operation: `),
+		chalk.bgBlue('Client Registration'),
+		chalk.blue('\nInterface: '),
+		chalk.bgBlue('Register'),
+		chalk.green(`\nstarting...`),
+	)
 	const host = localServer === true ? 'localhost' : 'eu.iot.avsystem.cloud'
 	const query = `ep=${deviceName}&lt=${lifetime}&lwm2m=${lwm2mv}&b=${biding}`
 
@@ -79,9 +86,15 @@ export const registration = async ({
 
 	const socketPort = response.outSocket?.port
 
-	console.log('\nClient Registration operation from Register interface: end')
 	if (socketPort === undefined) {
+		console.log(chalk.red(`Client Registration failed`))
 		throw new Error(`Socket connection is not stablish`)
+	} else {
+		console.log(
+			' ',
+			chalk.green('✔'),
+			chalk.blue(`Client Registration performed`),
+		)
 	}
 
 	return { socketPort }
