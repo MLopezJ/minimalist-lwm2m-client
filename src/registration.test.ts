@@ -1,5 +1,5 @@
 import { Server, createServer } from 'coap'
-import { registration} from './registration'
+import { registration } from './registration'
 
 describe('registerDeviceObjects', () => {
 	let server: Server
@@ -25,7 +25,7 @@ describe('registerDeviceObjects', () => {
 			lifetime: '3600',
 			lwm2mv: '1.1',
 			biding: 'U',
-			test: true,
+			localServer: true,
 		}
 		await registration(params)
 

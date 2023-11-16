@@ -4,22 +4,24 @@ import { type CoapMethod } from 'coap-packet'
 /**
  * Operation: Client Registration
  * Interface: Register
+ *
+ * The localServer param indicates the URL of the client. True means local server, false means coiote.
  */
 export const registration = async ({
 	deviceName,
 	lifetime,
 	biding,
 	lwm2mv,
-	test,
+	localServer,
 }: {
 	deviceName: string
 	lifetime: string
 	biding: string
 	lwm2mv: string
-	test: boolean
+	localServer: boolean
 }): Promise<{ socketPort: number }> => {
 	console.log('\nClient Registration operation from Register interface: start')
-	const host = test === false ? 'eu.iot.avsystem.cloud' : 'localhost'
+	const host = localServer === true ? 'localhost' : 'eu.iot.avsystem.cloud'
 	const query = `ep=${deviceName}&lt=${lifetime}&lwm2m=${lwm2mv}&b=${biding}`
 
 	const params = {

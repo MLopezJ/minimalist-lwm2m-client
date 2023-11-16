@@ -8,7 +8,7 @@ const main = async () => {
 		lifetime: '3600',
 		lwm2mv: '1.1',
 		biding: 'U',
-		test: false,
+		localServer: false,
 	}
 
 	const register = await registration(device)
